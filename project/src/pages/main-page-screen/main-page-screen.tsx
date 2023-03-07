@@ -1,10 +1,10 @@
-import CityCard from '../../components/city-card-screen/city-card';
+import OfferCard from '../../components/city-card-screen/city-card';
 
 type Props = {
-  rentsCount: number;
+  offersAmount: number;
 }
 
-function MainPages({rentsCount}: Props) {
+function MainPage({offersAmount}: Props) {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -48,7 +48,7 @@ function MainPages({rentsCount}: Props) {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{rentsCount} places to stay in Amsterdam</b>
+            <b className="places__found">{offersAmount} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -65,11 +65,7 @@ function MainPages({rentsCount}: Props) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <CityCard />
-              <CityCard />
-              <CityCard />
-              <CityCard />
-              <CityCard />
+              {Array.from({ length: offersAmount }, (v, k) => k).map((el) => <OfferCard key={el}/>)};
             </div>
           </section>
           <div className="cities__right-section">
@@ -81,4 +77,4 @@ function MainPages({rentsCount}: Props) {
   );
 }
 
-export default MainPages;
+export default MainPage;

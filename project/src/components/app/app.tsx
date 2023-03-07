@@ -1,13 +1,13 @@
-import MainPages from '../../pages/main-page-screen/main-page';
+import MainPage from '../../pages/main-page-screen/main-page-screen';
 
 type AppProps = {
-  rentsCount: number;
+  offersAmount: number;
 }
 
-function App({rentsCount}: AppProps): JSX.Element {
+function App({offersAmount}: AppProps): JSX.Element {
   return (
-    <MainPages
-      rentsCount={rentsCount}
+    <MainPage
+      offersAmount={offersAmount}
     />
   );
 }
