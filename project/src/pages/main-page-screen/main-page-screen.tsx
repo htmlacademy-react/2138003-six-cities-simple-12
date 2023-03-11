@@ -1,4 +1,4 @@
-import OfferCard from '../../components/city-card-screen/city-card';
+import OfferCard from '../../components/offer-card/offer-card';
 
 type Props = {
   offersAmount: number;
