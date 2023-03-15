@@ -1,12 +1,17 @@
 import Header from '../../components/header/header';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import './error-screen.css';
 
 function ErrorPage () {
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div className='error-page'>
+      <Helmet>
+        <title>six cities simple: error404</title>
+      </Helmet>
       <Header />
       <h1>
-        <span style={{ fontSize: '5em' }}>404</span>
+        <span className='error-page-link'>404</span>
         <br/>
         Страница не существует
       </h1>

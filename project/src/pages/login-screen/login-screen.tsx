@@ -1,8 +1,12 @@
 import Header from '../../components/header/header';
+import { Helmet } from 'react-helmet-async';
 
 function Login() {
   return (
     <div className="page page--gray page--login">
+      <Helmet>
+        <title>six cities simple: authorization</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--login">
         <div className="page__login-container container">

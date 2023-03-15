@@ -1,8 +1,12 @@
 import Header from '../../components/header/header';
+import { Helmet } from 'react-helmet-async';
 
 function Property () {
   return (
     <div>
+      <Helmet>
+        <title>six cities simple: property</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--property">
         <section className="property">

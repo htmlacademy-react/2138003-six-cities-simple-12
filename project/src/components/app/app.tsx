@@ -4,6 +4,7 @@ import MainPage from '../../pages/main-page-screen/main-page-screen';
 import Login from '../../pages/login-screen/login-screen';
 import Property from '../../pages/property-screen/property-screen';
 import ErrorPage from '../../pages/error-screen/error-screen';
+import { HelmetProvider } from 'react-helmet-async';
 
 type AppProps = {
   offersAmount: number;
@@ -11,27 +12,28 @@ type AppProps = {
 
 function App({offersAmount}: AppProps): JSX.Element {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainPage offersAmount={offersAmount}/>}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<Login />}
-        />
-        <Route
-          path={AppRoute.Room}
-          element={<Property />}
-        />
-        <Route
-          path="*"
-          element={<ErrorPage />}
-        />
-      </Routes>
-    </BrowserRouter>
-
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<MainPage offersAmount={offersAmount}/>}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<Login />}
+          />
+          <Route
+            path={AppRoute.Room}
+            element={<Property />}
+          />
+          <Route
+            path="*"
+            element={<ErrorPage />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

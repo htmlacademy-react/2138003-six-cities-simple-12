@@ -1,5 +1,6 @@
 import OfferCard from '../../components/offer-card/offer-card';
 import Header from '../../components/header/header';
+import { Helmet } from 'react-helmet-async';
 
 type Props = {
   offersAmount: number;
@@ -8,6 +9,9 @@ type Props = {
 function MainPage({offersAmount}: Props) {
   return (
     <div>
+      <Helmet>
+        <title>six cities simple</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
