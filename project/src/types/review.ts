@@ -1,7 +1,5 @@
-import { Photo } from './photo';
-
 export type Review = {
-  avatar: Photo;
+  avatar: string;
   name: string;
   rating: number;
   date: string;

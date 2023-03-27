@@ -5,19 +5,16 @@ import Login from '../../pages/login-screen/login-screen';
 import Property from '../../pages/property-screen/property-screen';
 import ErrorPage from '../../pages/error-screen/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
+import { offers } from '../../mock/offers';
 
-type AppProps = {
-  offersAmount: number;
-}
-
-function App({offersAmount}: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offersAmount={offersAmount}/>}
+            element={<MainPage offersList={offers}/>}
           />
           <Route
             path={AppRoute.Login}

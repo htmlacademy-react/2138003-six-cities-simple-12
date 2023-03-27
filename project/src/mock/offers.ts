@@ -1,108 +1,79 @@
-// Фотографии. Выводится до 6-ти изображений.
-// Заголовок. Краткое описание предложения, например: «Beautiful & luxurious studio at great location».
-// Подробное описание.
-// Премиальность.
-// Тип жилья. Одно из предопределённых значений: apartment (Apartment), room (Private Room), house (House), hotel (Hotel).
-// Рейтинг. Оценка предложения отображается в виде закрашенных звезд и среднего балла (например, 4.8). Максимальное количество звёзд — 5.
-// Количество спален. Например, 3 Bedrooms.
-// Максимальное количество гостей. Например, Max 4 adults.
-// Стоимость аренды за ночь. Сумма всегда отображается в евро.
-// Список бытовых предметов в квартире (Wifi, Heating, Kitchen, Cable TV и т. д.);
-// Информация о хозяине: аватарка, имя, отметка pro (звёздочка возле аватарки) и подпись Pro под именем хозяина.
-
-import { Offer } from '../types/offer';
+import { Offers } from '../types/offer';
+import { reviews } from './reviews';
 import { AVATAR_URL } from './const';
 
-export const offers: Offer[] = [{
-  id: 1,
-  photos: [{
-    src: 'qwe',
-    url: 'qwe'
-  }],
-  title: 'qwe',
-  description: 'qwe',
-  premium: true,
-  typeHousing: 'Apartament',
-  rating: 5,
-  bedrooms: 2,
-  adults: 2,
-  price: 123,
-  options: ['Wifi', 'Heating', 'Kitchen', 'Cable TV'],
-  owner: {
-    avatar: {
-      src: `${AVATAR_URL}?rnd=${Math.random()}`,
-      url: 'qwe'
+export const offers: Offers[] = [
+  {
+    bedrooms: 3,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Amsterdam'
     },
-    name: 'Vanya',
-    pro: true
-  }
-},{
-  id: 2,
-  photos: [{
-    src: 'asd',
-    url: 'asd'
-  }],
-  title: 'asd',
-  description: 'asd',
-  premium: true,
-  typeHousing: 'Private Room',
-  rating: 4,
-  bedrooms: 1,
-  adults: 2,
-  price: 234,
-  options: ['Wifi', 'Heating', 'Kitchen'],
-  owner: {
-    avatar: {
-      src: `${AVATAR_URL}?rnd=${Math.random()}`,
-      url: 'asd'
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: ['Heating'],
+    host: {
+      avatarUrl: `${AVATAR_URL}/${Math.random()}`,
+      id: 3,
+      isPro: true,
+      name: 'Angelina'
     },
-    name: 'Katya',
-    pro: false
-  }
-},{
-  id: 3,
-  photos: [{
-    src: 'zxc',
-    url: 'zxc'
-  }],
-  title: 'zxc',
-  description: 'zxc',
-  premium: false,
-  typeHousing: 'House',
-  rating: 3,
-  bedrooms: 3,
-  adults: 4,
-  price: 345,
-  options: ['Heating', 'Kitchen'],
-  owner: {
-    avatar: {
-      src: `${AVATAR_URL}?rnd=${Math.random()}`,
-      url: 'asd'
+    id: 2,
+    images: [
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg'
+    ],
+    isPremium: false,
+    location: {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8
     },
-    name: 'Petya',
-    pro: true
-  }
-},{
-  id: 4,
-  photos: [{
-    src: 'rty',
-    url: 'rty'
-  }],
-  title: 'rty',
-  description: 'rty',
-  premium: false,
-  typeHousing: 'Hotel',
-  rating: 3.5,
-  bedrooms: 1,
-  adults: 2,
-  price: 110,
-  options: ['Kitchen'],
-  owner: {
-    avatar: {
-      src: `${AVATAR_URL}?rnd=${Math.random()}`,
-      url: 'rty'
+    maxAdults: 4,
+    previewImage: 'img/apartment-02.jpg',
+    price: 120,
+    rating: 4.8,
+    title: 'Beautiful & luxurious studio at great location',
+    type: 'apartment',
+    reviews: reviews
+  },{
+    bedrooms: 3,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Amsterdam'
     },
-    name: 'Kolya',
-    pro: false
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: ['Heating'],
+    host: {
+      avatarUrl: `${AVATAR_URL}/${Math.random()}`,
+      id: 3,
+      isPro: true,
+      name: 'Angelina'
+    },
+    id: 1,
+    images: [
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg'
+    ],
+    isPremium: true,
+    location: {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8
+    },
+    maxAdults: 4,
+    previewImage: 'img/apartment-01.jpg',
+    price: 120,
+    rating: 0.2,
+    title: 'Beautiful & luxurious studio at great location',
+    type: 'apartment',
+    reviews: reviews
   }
-}];
+];

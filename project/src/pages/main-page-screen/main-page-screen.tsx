@@ -1,12 +1,13 @@
-import OfferCard from '../../components/offer-card/offer-card';
 import Header from '../../components/header/header';
+import OffersList from '../../components/offers-list/offers-list';
 import { Helmet } from 'react-helmet-async';
+import { Offers } from '../../types/offer';
 
 type Props = {
-  offersAmount: number;
+  offersList: Offers[];
 }
 
-function MainPage({offersAmount}: Props) {
+function MainPage({offersList}: Props) {
   return (
     <div>
       <Helmet>
@@ -55,7 +56,7 @@ function MainPage({offersAmount}: Props) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersAmount} places to stay in Amsterdam</b>
+              <b className="places__found">{offersList.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -72,7 +73,7 @@ function MainPage({offersAmount}: Props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: offersAmount }, (v, k) => k).map((el) => <OfferCard key={el}/>)};
+                <OffersList offersList={offersList} />
               </div>
             </section>
             <div className="cities__right-section">
