@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Comment(): JSX.Element {
+function CommentForm(): JSX.Element {
 
   const [formData, setFormData] = useState({
     review: '',
@@ -65,4 +65,4 @@ function Comment(): JSX.Element {
     </form>
   );}
 
-export default Comment;
+export default CommentForm;

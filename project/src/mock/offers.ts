@@ -1,8 +1,8 @@
-import { Offers } from '../types/offer';
+import { Offer } from '../types/offer';
 import { reviews } from './reviews';
 import { AVATAR_URL } from './const';
 
-export const offers: Offers[] = [
+export const offers: Offer[] = [
   {
     bedrooms: 3,
     city: {
@@ -16,7 +16,7 @@ export const offers: Offers[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating'],
     host: {
-      avatarUrl: `${AVATAR_URL}/${Math.random()}`,
+      avatarUrl: `${AVATAR_URL}?rnd=${Math.random()}`,
       id: 3,
       isPro: true,
       name: 'Angelina'
@@ -52,10 +52,10 @@ export const offers: Offers[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating'],
     host: {
-      avatarUrl: `${AVATAR_URL}/${Math.random()}`,
+      avatarUrl: `${AVATAR_URL}?rnd=${Math.random()}`,
       id: 3,
-      isPro: true,
-      name: 'Angelina'
+      isPro: false,
+      name: 'Neo'
     },
     id: 1,
     images: [

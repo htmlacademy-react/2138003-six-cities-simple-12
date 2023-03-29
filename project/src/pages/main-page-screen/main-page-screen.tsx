@@ -1,10 +1,10 @@
 import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import { Helmet } from 'react-helmet-async';
-import { Offers } from '../../types/offer';
+import { Offer } from '../../types/offer';
 
 type Props = {
-  offersList: Offers[];
+  offersList: Offer[];
 }
 
 function MainPage({offersList}: Props) {

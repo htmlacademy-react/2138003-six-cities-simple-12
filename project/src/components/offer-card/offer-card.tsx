@@ -1,17 +1,17 @@
-import { Offers } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import Premium from '../premium/premium';
 import { ratingScale } from '../const';
 import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 
 type OfferPageProps = {
-  offers: Offers;
+  offer: Offer;
   mouseEnter: (id: number) => void;
   mouseLeave: () => void;
 }
 
-function OfferCard ({offers, mouseEnter, mouseLeave}: OfferPageProps) {
-  const { id, title, isPremium, price, rating, type, previewImage } = offers;
+function OfferCard ({offer, mouseEnter, mouseLeave}: OfferPageProps) {
+  const { id, title, isPremium, price, rating, type, previewImage } = offer;
 
   return (
     <article className="cities__card place-card"
@@ -39,7 +39,7 @@ function OfferCard ({offers, mouseEnter, mouseLeave}: OfferPageProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Room.replace(/:id/, `${id}`)}`} key={id}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

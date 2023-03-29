@@ -1,9 +1,9 @@
 import OfferCard from '../offer-card/offer-card';
-import { Offers } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import { useState } from 'react';
 
 type Props = {
-  offersList: Offers[];
+  offersList: Offer[];
 }
 
 export default function OffersList({ offersList }: Props) {
@@ -20,7 +20,7 @@ export default function OffersList({ offersList }: Props) {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offersList.map((item) => <OfferCard key={item.id} offers={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
+      {offersList.map((item) => <OfferCard key={item.id} offer={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
     </div>
   );
 }
