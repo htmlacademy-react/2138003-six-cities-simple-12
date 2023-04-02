@@ -2,6 +2,8 @@ import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
+import Map from '../../components/map/map';
+import { offers, location } from '../../mock/offers';
 
 type Props = {
   offersList: Offer[];
@@ -77,7 +79,7 @@ function MainPage({offersList}: Props) {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map location={location} offers={offers}/>
             </div>
           </div>
         </div>

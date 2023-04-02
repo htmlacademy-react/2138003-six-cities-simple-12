@@ -7,14 +7,16 @@ type Host = {
   name: string;
 }
 
+export type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
 export type Offer = {
   bedrooms: number;
   city: {
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
+    location: Location;
     name: string;
   };
   description: string;
@@ -23,11 +25,7 @@ export type Offer = {
   id: number;
   images: string[];
   isPremium: boolean;
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
+  location: Location;
   maxAdults: number;
   previewImage: string;
   price: number;
