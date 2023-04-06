@@ -1,21 +1,19 @@
 import OfferCard from '../offer-card/offer-card';
 import { Offer } from '../../types/offer';
-import { useState } from 'react';
 
 type Props = {
   offersList: Offer[];
+  onOfferHover?: (offerId: number | null) => void;
 }
 
-export default function OffersList({ offersList }: Props) {
-
-  const [, setActualId] = useState<number | null>();
+export default function OffersList({ offersList, onOfferHover }: Props) {
 
   const mouseEnter = (id:number) => {
-    setActualId(id);
+    onOfferHover?.(id);
   };
 
   const mouseLeave = () => {
-    setActualId(null);
+    onOfferHover?.(null);
   };
 
   return (

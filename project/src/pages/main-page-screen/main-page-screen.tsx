@@ -4,12 +4,21 @@ import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import Map from '../../components/map/map';
 import { offers, location } from '../../mock/offers';
+import { useState } from 'react';
 
 type Props = {
   offersList: Offer[];
 }
 
-function MainPage({offersList}: Props) {
+export default function MainPage({offersList}: Props) {
+  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+
+  const onOfferHover = (offerId: number | null) => {
+    const currentOffer = offers.find((item) => item.id === offerId);
+
+    setSelectedOffer(currentOffer);
+  };
+
   return (
     <div>
       <Helmet>
@@ -75,11 +84,11 @@ function MainPage({offersList}: Props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offersList={offersList} />
+                <OffersList offersList={offersList} onOfferHover={onOfferHover}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <Map location={location} offers={offers}/>
+              <Map location={location} selectedOffer={selectedOffer} offers={offers}/>
             </div>
           </div>
         </div>
@@ -87,5 +96,3 @@ function MainPage({offersList}: Props) {
     </div>
   );
 }
-
-export default MainPage;
