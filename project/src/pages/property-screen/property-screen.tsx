@@ -11,20 +11,11 @@ import OfferCard from '../../components/offer-card/offer-card';
 
 type OfferProps = {
   offers: Offer[];
-  onOfferHover?: (offerId: number | null) => void;
 }
 
-function Property ({offers, onOfferHover}: OfferProps) {
+function Property ({offers}: OfferProps) {
   const { id } = useParams();
   const offer = offers.find((offerId) => offerId.id === Number(id));
-
-  const mouseEnter = (index:number) => {
-    onOfferHover?.(index);
-  };
-
-  const mouseLeave = () => {
-    onOfferHover?.(null);
-  };
 
   if (!offer) {
     return <ErrorPage/>;
@@ -131,8 +122,7 @@ function Property ({offers, onOfferHover}: OfferProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {/* <OffersList offersList={offers}/> */}
-              {offers.slice(0, 3).map((item) => <OfferCard key={item.id} offer={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
+              {offers.slice(0, 3).map((item) => <OfferCard key={item.id} offer={item}/>)}
             </div>
           </section>
         </div>

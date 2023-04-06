@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 type OfferPageProps = {
   offer: Offer;
-  mouseEnter: (id: number) => void;
-  mouseLeave: () => void;
+  mouseEnter?: (id: number) => void;
+  mouseLeave?: () => void;
 }
 
 function OfferCard ({offer, mouseEnter, mouseLeave}: OfferPageProps) {
@@ -15,7 +15,7 @@ function OfferCard ({offer, mouseEnter, mouseLeave}: OfferPageProps) {
 
   return (
     <article className="cities__card place-card"
-      onMouseEnter={() => mouseEnter(id)}
+      onMouseEnter={() => mouseEnter?.(id)}
       onMouseLeave={mouseLeave}
     >
       {Premium(isPremium)}
