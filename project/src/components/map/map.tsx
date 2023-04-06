@@ -7,23 +7,25 @@ import 'leaflet/dist/leaflet.css';
 type Props = {
   location: Location;
   offers: Offer[];
+  selectedOffer: Offer | undefined;
 }
 
 const URL_MARKER_DEFAULT = './img/pin.svg';
+const URL_MARKER_CURRENT = './img/pin-active.svg';
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
+  iconSize: [30, 40],
   iconAnchor: [20, 40]
 });
 
-// const currentCustomIcon = leaflet.icon({
-//   iconUrl: URL_MARKER_CURRENT,
-//   iconSize: [40, 40],
-//   iconAnchor: [20, 40]
-// });
+const currentCustomIcon = leaflet.icon({
+  iconUrl: URL_MARKER_CURRENT,
+  iconSize: [30, 40],
+  iconAnchor: [20, 40]
+});
 
-export default function Map({ location, offers }: Props) {
+export default function Map({ location, offers, selectedOffer }: Props) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
 
@@ -35,12 +37,14 @@ export default function Map({ location, offers }: Props) {
             lat: item.location.latitude,
             lng: item.location.longitude,
           }, {
-            icon: defaultCustomIcon,
+            icon: (selectedOffer !== undefined && item.id === selectedOffer.id)
+              ? currentCustomIcon
+              : defaultCustomIcon,
           })
           .addTo(map);
       });
     }
-  });
+  }, [map, offers, selectedOffer]);
 
   return (
     <section className="cities__map map" style={{ width: '100%' }} ref={mapRef}></section>
