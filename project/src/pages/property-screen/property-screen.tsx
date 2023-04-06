@@ -7,15 +7,24 @@ import ErrorPage from '../error-screen/error-screen';
 import pro from '../../components/host-pro/host-pro';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
-import OffersList from '../../components/offers-list/offers-list';
+import OfferCard from '../../components/offer-card/offer-card';
 
 type OfferProps = {
   offers: Offer[];
+  onOfferHover?: (offerId: number | null) => void;
 }
 
-function Property ({offers}: OfferProps) {
+function Property ({offers, onOfferHover}: OfferProps) {
   const { id } = useParams();
   const offer = offers.find((offerId) => offerId.id === Number(id));
+
+  const mouseEnter = (index:number) => {
+    onOfferHover?.(index);
+  };
+
+  const mouseLeave = () => {
+    onOfferHover?.(null);
+  };
 
   if (!offer) {
     return <ErrorPage/>;
@@ -122,7 +131,8 @@ function Property ({offers}: OfferProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offersList={offers}/>
+              {/* <OffersList offersList={offers}/> */}
+              {offers.slice(0, 3).map((item) => <OfferCard key={item.id} offer={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
             </div>
           </section>
         </div>
