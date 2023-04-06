@@ -3,17 +3,17 @@ import { Offer } from '../../types/offer';
 
 type Props = {
   offersList: Offer[];
-  onOfferHover: (offerId: number | null) => void;
+  onOfferHover?: (offerId: number | null) => void;
 }
 
 export default function OffersList({ offersList, onOfferHover }: Props) {
 
   const mouseEnter = (id:number) => {
-    onOfferHover(id);
+    onOfferHover?.(id);
   };
 
   const mouseLeave = () => {
-    onOfferHover(null);
+    onOfferHover?.(null);
   };
 
   return (

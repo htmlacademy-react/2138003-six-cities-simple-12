@@ -7,7 +7,7 @@ import ErrorPage from '../error-screen/error-screen';
 import pro from '../../components/host-pro/host-pro';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
-import OfferCard from '../../components/offer-card/offer-card';
+import OffersList from '../../components/offers-list/offers-list';
 
 type OfferProps = {
   offers: Offer[];
@@ -110,19 +110,18 @@ function Property ({offers}: OfferProps) {
               </section>
             </div>
           </div>
-          {/* <section className="property__map map">
-            <Map location={location} offers={offers}/>
-          </section> */}
-          <div className="cities__right-section">
+          <section className="property__map map">
             <Map location={city.location} offers={offers} selectedOffer={offer}/>
-          </div>
-          {/* Что с картой не так? */}
+          </section>
+          {/* <div className="cities__right-section">
+            <Map location={city.location} offers={offers} selectedOffer={offer}/>
+          </div> */}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.slice(0, 3).map((item) => <OfferCard key={item.id} offer={item}/>)}
+              <OffersList offersList={offers.slice(0, 3)}/>
             </div>
           </section>
         </div>
