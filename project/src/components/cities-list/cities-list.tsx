@@ -1,10 +1,10 @@
-import City from '../city/city';
-import { citiesNames } from '../../types/city';
+import CityComponent from '../city/city';
+import { cities } from '../../const';
 
 export default function CitiesList() {
   return (
     <ul className="locations__list tabs__list">
-      {citiesNames.map((item) => <li className="locations__item" key={item.name}><City city={item} /></li>)}
+      {cities.map((item) => <li className="locations__item" key={item.name}><CityComponent city={item} /></li>)}
     </ul>
   );
 }

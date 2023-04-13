@@ -18,13 +18,11 @@ export default function MainPage() {
   const currentOffers = useAppSelector(() => allOffers.filter((offer) => offer.city.name === currentCity.name));
 
   useEffect(() => {
-    dispatch(setListOffers(
-      allOffers
-    ));
-  }, [dispatch, allOffers]);
+    dispatch(setListOffers(offers));
+  }, [dispatch]);
 
   const onOfferHover = (offerId: number | null) => {
-    const currentOffer = offers.find((item) => item.id === offerId);
+    const currentOffer = currentOffers.find((item) => item.id === offerId);
 
     setSelectedOffer(currentOffer);
   };

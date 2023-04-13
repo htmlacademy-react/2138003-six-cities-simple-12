@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setActiveCity } from '../../store/action';
-import { CitiesName } from '../../types/city';
+import { City } from '../../types/city';
 
 type Props = {
-  city:CitiesName;
+  city: City;
 }
 
-export default function City({ city }: Props) {
+export default function CityComponent({ city }: Props) {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector((item) => item.city.name);
 
