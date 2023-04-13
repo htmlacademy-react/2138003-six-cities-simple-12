@@ -1,16 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { citiesNames } from '../types/city';
+import { cities } from '../types/city';
 import { setActiveCity, setListOffers } from './action';
 import { Offer } from '../types/offer';
-import { CitiesName } from '../types/city';
+import { City } from '../types/city';
 
 type typeState = {
-  city: CitiesName;
+  city: City;
   offers: Offer[];
 }
 
 const initialState: typeState = {
-  city: citiesNames[0],
+  city: cities[0],
   offers: [],
 };
 

@@ -1,4 +1,4 @@
-export type CitiesName = {
+export type City = {
   name: string;
   location: {
     latitude: number;
@@ -7,7 +7,7 @@ export type CitiesName = {
   };
 }
 
-export const citiesNames: CitiesName[] = [
+export const cities: City[] = [
   {
     name: 'Paris',
     location: {

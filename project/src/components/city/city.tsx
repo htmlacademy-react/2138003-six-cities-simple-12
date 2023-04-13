@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setActiveCity } from '../../store/action';
-import { CitiesName } from '../../types/city';
+import { City } from '../../types/city';
 
 type Props = {
-  city:CitiesName;
+  city:City;
 }
 
 export default function City({ city }: Props) {
