@@ -1,5 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
+<<<<<<< HEAD
 import { cities } from '../const';
+=======
+import { cities } from '../types/city';
+>>>>>>> d95c2611110c99661ce7255ebbd2fd9905522585
 import { setActiveCity, setListOffers } from './action';
 import { Offer } from '../types/offer';
 import { City } from '../types/city';
