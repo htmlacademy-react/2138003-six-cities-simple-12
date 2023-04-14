@@ -3,11 +3,7 @@ import { setActiveCity } from '../../store/action';
 import { City } from '../../types/city';
 
 type Props = {
-<<<<<<< HEAD
   city: City;
-=======
-  city:City;
->>>>>>> d95c2611110c99661ce7255ebbd2fd9905522585
 }
 
 export default function CityComponent({ city }: Props) {
