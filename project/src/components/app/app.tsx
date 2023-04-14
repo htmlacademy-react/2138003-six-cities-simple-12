@@ -14,7 +14,7 @@ function App(): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offersList={offers}/>}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}

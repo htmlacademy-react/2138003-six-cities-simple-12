@@ -47,6 +47,6 @@ export default function Map({ location, offers, selectedOffer }: Props) {
   }, [map, offers, selectedOffer]);
 
   return (
-    <section className="cities__map map" style={{ width: '100%', height: '100%' }} ref={mapRef}></section>
+    <section className="cities__map map" style={{ width: '100%', height: '580px' }} ref={mapRef}></section>
   );
 }
