@@ -11,16 +11,20 @@ export default function SortingForm() {
   const dispatch = useAppDispatch();
 
   const handleSortingChange = (event: MouseEvent<HTMLElement>) => {
-    event.preventDefault();
+    event.stopPropagation();
     setOpenPopap(!isOpenPopap);
   };
 
   useEffect(()=>{
-    if(isOpenPopap){
-      document.addEventListener('click', () => {
-        setOpenPopap(false);
-      });
+    const documentClickHandler = () => {
+      setOpenPopap(false);
+    };
+    if(isOpenPopap) {
+      document.addEventListener('click', documentClickHandler );
     }
+    return () => {
+      document.removeEventListener('click', documentClickHandler);
+    };
   },[isOpenPopap]);
 
   return (
