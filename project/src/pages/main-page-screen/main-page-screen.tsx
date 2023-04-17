@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setListOffers } from '../../store/action';
 import CitiesList from '../../components/cities-list/cities-list';
 import SortingForm from '../../components/sorting-list/sorting-list';
+import { sortingOffers } from '../../components/sorting-list/sorting-offers';
 
 export default function MainPage() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
@@ -17,6 +18,7 @@ export default function MainPage() {
   const currentCity = useAppSelector((state) => state.city);
   const allOffers = useAppSelector((state) => state.offers);
   const currentOffers = useAppSelector(() => allOffers.filter((offer) => offer.city.name === currentCity.name));
+  const sortType = useAppSelector((state) => state.select);
 
   useEffect(() => {
     dispatch(setListOffers(offers));
@@ -48,7 +50,7 @@ export default function MainPage() {
               <b className="places__found">{currentOffers.length} places to stay in {currentCity.name}</b>
               <SortingForm />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offersList={currentOffers} onOfferHover={onOfferHover}/>
+                <OffersList offersList={sortingOffers(currentOffers, sortType)} onOfferHover={onOfferHover}/>
               </div>
             </section>
             <div className="cities__right-section">
