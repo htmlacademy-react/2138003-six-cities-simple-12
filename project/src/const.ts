@@ -1,4 +1,5 @@
 import { City } from './types/city';
+import { Sorting } from './types/sort';
 
 export enum AppRoute {
   Main = '/',
@@ -56,3 +57,10 @@ export const cities: City[] = [
     }
   },
 ];
+
+export const sorting: Sorting = {
+  popular: 'Popular',
+  low: 'Price: low to high',
+  high: 'Price: high to low',
+  top: 'Top rated first',
+};
