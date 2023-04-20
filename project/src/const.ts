@@ -7,6 +7,12 @@ export enum AppRoute {
   Room = '/offer/:id'
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const cities: City[] = [
   {
     name: 'Paris',

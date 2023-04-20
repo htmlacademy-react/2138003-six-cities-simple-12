@@ -1,5 +1,7 @@
 import OfferCard from '../offer-card/offer-card';
 import { Offer } from '../../types/offer';
+import Spinner from '../spinner/spinner';
+import { useAppSelector } from '../../hooks';
 
 type Props = {
   offersList: Offer[];
@@ -7,6 +9,7 @@ type Props = {
 }
 
 export default function OffersList({ offersList, onOfferHover }: Props) {
+  const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
 
   const mouseEnter = (id:number) => {
     onOfferHover?.(id);
@@ -18,7 +21,9 @@ export default function OffersList({ offersList, onOfferHover }: Props) {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offersList.map((item) => <OfferCard key={item.id} offer={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
+      {isOffersLoaded ?
+        <Spinner /> :
+        offersList.map((item) => <OfferCard key={item.id} offer={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
     </div>
   );
 }
