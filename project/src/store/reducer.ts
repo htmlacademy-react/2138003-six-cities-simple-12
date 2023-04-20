@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cities } from '../const';
-import { setActiveCity, setListOffers, setSortOffers, loadOffers } from './action';
+import { setActiveCity, setListOffers, setSortOffers, loadOffers, setIsOffersLoaded } from './action';
 import { Offer } from '../types/offer';
 import { City } from '../types/city';
 import { sorting } from '../const';
@@ -32,5 +32,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(setIsOffersLoaded, (state, action) => {
+      state.isOffersLoaded = action.payload;
     });
 });

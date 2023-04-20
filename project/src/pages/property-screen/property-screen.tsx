@@ -11,12 +11,12 @@ import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchQuestionAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks';
-import { setIsOffersLoaded } from '../../store/action';
 import Spinner from '../../components/spinner/spinner';
 
 function Property () {
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
+  const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
 
   const { id } = useParams();
   const currentOffer = offers.find((offerId) => offerId.id === Number(id));
@@ -25,11 +25,11 @@ function Property () {
     dispatch(fetchQuestionAction());
   }, [dispatch]);
 
-  if (!currentOffer){
+  if (isOffersLoaded && !currentOffer) {
     return <Spinner/>;
   }
 
-  if (!setIsOffersLoaded && !currentOffer) {
+  if (!currentOffer){
     return <ErrorPage/>;
   }
 
