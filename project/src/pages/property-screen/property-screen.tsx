@@ -1,6 +1,5 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
 import { ratingScale } from '../../components/const';
 import { useParams } from 'react-router-dom';
 import ErrorPage from '../error-screen/error-screen';
@@ -8,20 +7,33 @@ import pro from '../../components/host-pro/host-pro';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
+import { useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchQuestionAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks';
+import { setIsOffersLoaded } from '../../store/action';
+import Spinner from '../../components/spinner/spinner';
 
-type OfferProps = {
-  offers: Offer[];
-}
+function Property () {
+  const dispatch = useAppDispatch();
+  const offers = useAppSelector((state) => state.offers);
 
-function Property ({offers}: OfferProps) {
   const { id } = useParams();
-  const offer = offers.find((offerId) => offerId.id === Number(id));
+  const currentOffer = offers.find((offerId) => offerId.id === Number(id));
 
-  if (!offer) {
+  useEffect(() => {
+    dispatch(fetchQuestionAction());
+  }, [dispatch]);
+
+  if (!currentOffer){
+    return <Spinner/>;
+  }
+
+  if (!setIsOffersLoaded && !currentOffer) {
     return <ErrorPage/>;
   }
 
-  const { bedrooms, description, goods, host, images, isPremium, maxAdults, price, rating, title, type, city } = offer;
+  const { bedrooms, description, goods, host, images, isPremium, maxAdults, price, rating, title, type, city } = currentOffer;
   return (
     <div>
       <Helmet>
@@ -111,11 +123,8 @@ function Property ({offers}: OfferProps) {
             </div>
           </div>
           <section className="property__map map">
-            <Map location={city.location} offers={offers} selectedOffer={offer}/>
+            <Map location={city.location} offers={offers} selectedOffer={currentOffer}/>
           </section>
-          {/* <div className="cities__right-section">
-            <Map location={city.location} offers={offers} selectedOffer={offer}/>
-          </div> */}
         </section>
         <div className="container">
           <section className="near-places places">

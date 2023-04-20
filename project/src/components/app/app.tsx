@@ -5,7 +5,6 @@ import Login from '../../pages/login-screen/login-screen';
 import Property from '../../pages/property-screen/property-screen';
 import ErrorPage from '../../pages/error-screen/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
-import { offers } from '../../mock/offers';
 
 function App(): JSX.Element {
   return (
@@ -22,7 +21,7 @@ function App(): JSX.Element {
           />
           <Route
             path={AppRoute.Room}
-            element={<Property offers={offers} />}
+            element={<Property />}
           />
           <Route
             path="*"
