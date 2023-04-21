@@ -3,13 +3,12 @@ import OffersList from '../../components/offers-list/offers-list';
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import Map from '../../components/map/map';
-import { offers } from '../../mock/offers';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setListOffers } from '../../store/action';
 import CitiesList from '../../components/cities-list/cities-list';
 import SortingForm from '../../components/sorting-list/sorting-list';
-import { sortingOffers } from '../../components/sorting-list/sorting-offers';
+import { sortOffers } from '../../components/sorting-list/sorting-offers';
+import { fetchQuestionAction } from '../../store/api-actions';
 
 export default function MainPage() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
@@ -21,7 +20,7 @@ export default function MainPage() {
   const sortType = useAppSelector((state) => state.select);
 
   useEffect(() => {
-    dispatch(setListOffers(offers));
+    dispatch(fetchQuestionAction());
   }, [dispatch]);
 
   const onOfferHover = (offerId: number | null) => {
@@ -50,7 +49,7 @@ export default function MainPage() {
               <b className="places__found">{currentOffers.length} places to stay in {currentCity.name}</b>
               <SortingForm />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offersList={sortingOffers(currentOffers, sortType)} onOfferHover={onOfferHover}/>
+                <OffersList offersList={sortOffers(currentOffers, sortType)} onOfferHover={onOfferHover}/>
               </div>
             </section>
             <div className="cities__right-section">

@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cities } from '../const';
-import { setActiveCity, setListOffers, setSortOffers } from './action';
+import { setActiveCity, setListOffers, setSortOffers, loadOffers, setIsOffersLoaded } from './action';
 import { Offer } from '../types/offer';
 import { City } from '../types/city';
 import { sorting } from '../const';
@@ -9,12 +9,14 @@ type typeState = {
   city: City;
   offers: Offer[];
   select: string;
+  isOffersLoaded: boolean;
 }
 
 const initialState: typeState = {
   city: cities[0],
   offers: [],
   select: sorting.popular,
+  isOffersLoaded: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -27,5 +29,11 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortOffers, (state, action) => {
       state.select = action.payload;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(setIsOffersLoaded, (state, action) => {
+      state.isOffersLoaded = action.payload;
     });
 });
