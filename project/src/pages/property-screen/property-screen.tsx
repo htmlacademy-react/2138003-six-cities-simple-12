@@ -9,7 +9,7 @@ import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
 import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { fetchQuestionAction } from '../../store/api-actions';
+import { fetchOfferAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks';
 import { setIsOffersLoaded } from '../../store/action';
 import Spinner from '../../components/spinner/spinner';
@@ -22,7 +22,7 @@ function Property () {
   const currentOffer = offers.find((offerId) => offerId.id === Number(id));
 
   useEffect(() => {
-    dispatch(fetchQuestionAction());
+    dispatch(fetchOfferAction());
   }, [dispatch]);
 
   if (!currentOffer){

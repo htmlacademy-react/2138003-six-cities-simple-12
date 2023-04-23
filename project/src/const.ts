@@ -13,6 +13,12 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
 export const cities: City[] = [
   {
     name: 'Paris',
@@ -70,3 +76,5 @@ export const sorting: Sorting = {
   high: 'Price: high to low',
   top: 'Top rated first',
 };
+
+export const TIMEOUT_SHOW_ERROR = 2000;
