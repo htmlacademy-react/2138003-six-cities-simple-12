@@ -1,6 +1,19 @@
 import Logo from '../logo/logo';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
+import { checkAuthAction, logoutAction } from '../../store/api-actions';
+import { AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 
-function Header() {
+export default function Header() {
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const email = useAppSelector((state) => state.email);
+
+  useEffect(() => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
+
   return (
     <header className="header">
       <div className="container">
@@ -13,12 +26,17 @@ function Header() {
               <li className="header__nav-item user">
                 <div className="header__nav-profile">
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span className="header__user-name user__name">{(authorizationStatus === AuthorizationStatus.Auth) ? email : ''}</span>
                 </div>
               </li>
               <li className="header__nav-item">
-                <a className="header__nav-link" href="#">
-                  <span className="header__signout">Sign out</span>
+                <a className="header__nav-link"
+                  onClick={() => {
+                    dispatch(logoutAction());
+                  }}
+                  href={AppRoute.Login}
+                >
+                  <span className="header__signout">{(authorizationStatus === AuthorizationStatus.Auth) ? 'Sign out' : 'Sign in'}</span>
                 </a>
               </li>
             </ul>
@@ -28,5 +46,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

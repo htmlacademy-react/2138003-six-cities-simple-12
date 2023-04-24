@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import CitiesList from '../../components/cities-list/cities-list';
 import SortingForm from '../../components/sorting-list/sorting-list';
 import { sortOffers } from '../../components/sorting-list/sorting-offers';
-import { fetchQuestionAction } from '../../store/api-actions';
+import { fetchOfferAction } from '../../store/api-actions';
 
 export default function MainPage() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
@@ -20,7 +20,7 @@ export default function MainPage() {
   const sortType = useAppSelector((state) => state.select);
 
   useEffect(() => {
-    dispatch(fetchQuestionAction());
+    dispatch(fetchOfferAction());
   }, [dispatch]);
 
   const onOfferHover = (offerId: number | null) => {
