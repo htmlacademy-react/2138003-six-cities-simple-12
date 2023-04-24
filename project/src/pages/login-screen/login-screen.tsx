@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../../store/api-actions';
+import passValidate from '../../utils';
+import { AuthorizationStatus } from '../../const';
 
 export default function Login() {
   const dispatch = useAppDispatch();
@@ -13,18 +15,22 @@ export default function Login() {
   const cityName = useAppSelector((state) => state.city.name);
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    navigate(AppRoute.Main);
+  }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current !== null && passwordRef.current !== null && passValidate(passwordRef.current.value)) {
       dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       }));
+      navigate(AppRoute.Main);
     }
-
-    navigate(AppRoute.Main);
   };
 
   return (

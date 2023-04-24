@@ -9,6 +9,6 @@ export const setSortOffers = createAction<string>('app/setSortOffers');
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
 export const setIsOffersLoaded = createAction<boolean>('data/setIsOffersLoaded');
 export const changeAuthorizationStatus = createAction<AuthorizationStatus>('login/changeAuthorizationStatus');
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const setAuthorizationStatus = createAction<AuthorizationStatus>('user/setAuthorizationStatus');
 export const setError = createAction<string | null>('offers/setError');
 export const setEmail = createAction<string | null>('login/setEmail');
