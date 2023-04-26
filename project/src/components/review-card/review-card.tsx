@@ -1,5 +1,5 @@
 import { ratingScale } from '../const';
-import formatDate from '../date/date';
+import { formatDate } from '../../utils';
 import { Comment } from '../../types/comment';
 
 type Props = {

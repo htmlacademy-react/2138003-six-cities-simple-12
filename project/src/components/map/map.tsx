@@ -31,6 +31,15 @@ export default function Map({ location, offers, selectedOffer }: Props) {
 
   useEffect(() => {
     if (map) {
+      map.flyTo(
+        [location.latitude, location.longitude],
+        location.zoom,
+      );
+    }
+  }, [map, location]);
+
+  useEffect(() => {
+    if (map) {
       offers.forEach((item) => {
         leaflet
           .marker({

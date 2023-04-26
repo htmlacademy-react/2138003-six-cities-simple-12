@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import CitiesList from '../../components/cities-list/cities-list';
 import SortingForm from '../../components/sorting-list/sorting-list';
-import { sortOffers } from '../../components/sorting-list/sorting-offers';
+import { sortOffers } from '../../utils';
 import { fetchOfferAction } from '../../store/api-actions';
 
 export default function MainPage() {
@@ -30,7 +30,7 @@ export default function MainPage() {
   };
 
   return (
-    <div>
+    <div className="page page--gray page--main">
       <Helmet>
         <title>six cities simple</title>
       </Helmet>
