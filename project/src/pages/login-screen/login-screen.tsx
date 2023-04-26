@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../../store/api-actions';
-import isPassValid from '../../utils';
+import { isPassValid } from '../../utils';
 import { AuthorizationStatus } from '../../const';
 
 export default function Login() {
@@ -57,7 +57,7 @@ export default function Login() {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <a className="locations__item-link" href="#todo">
                 <span>{cityName}</span>
               </a>
             </div>
