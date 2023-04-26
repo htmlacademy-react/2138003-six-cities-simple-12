@@ -33,11 +33,11 @@ export default function Property () {
   }, [dispatch, id]);
 
   if (isOffersLoaded && !currentOffer) {
-    return <Spinner/>;
+    return <Spinner />;
   }
 
   if (!currentOffer){
-    return <ErrorPage/>;
+    return <ErrorPage />;
   }
 
   const { bedrooms, description, goods, host, images, isPremium, maxAdults, price, rating, title, type, city } = currentOffer;
