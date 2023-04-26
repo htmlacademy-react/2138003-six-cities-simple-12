@@ -1,5 +1,3 @@
-import { Review } from './review';
-
 type Host = {
   avatarUrl: string;
   id: number;
@@ -32,5 +30,4 @@ export type Offer = {
   rating: number;
   title: string;
   type: string;
-  reviews: Review[];
 }

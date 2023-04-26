@@ -1,9 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cities } from '../const';
-import { setActiveCity, setListOffers, setSortOffers, loadOffers, setAuthorizationStatus, setError, setEmail } from './action';
+import { setActiveCity, setListOffers, setSortOffers, loadOffers, setAuthorizationStatus, setError, setEmail, loadComment, loadNearbyOffers, setIsOffersLoaded } from './action';
 import { Offer } from '../types/offer';
 import { City } from '../types/city';
 import { sorting, AuthorizationStatus } from '../const';
+import { Comment } from '../types/comment';
 
 type typeState = {
   city: City;
@@ -13,6 +14,8 @@ type typeState = {
   authorizationStatus: string;
   error: string | null;
   email: string | null;
+  nearbyOffers: Offer[];
+  offerComments: Comment[];
 }
 
 const initialState: typeState = {
@@ -22,7 +25,9 @@ const initialState: typeState = {
   isOffersLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
-  email: '',
+  email: null,
+  nearbyOffers: [],
+  offerComments: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -42,10 +47,19 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
     })
+    .addCase(setIsOffersLoaded, (state, actions) => {
+      state.isOffersLoaded = actions.payload;
+    })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
     })
     .addCase(setEmail, (state, action) => {
       state.email = action.payload;
+    })
+    .addCase(loadNearbyOffers, (state, actions) => {
+      state.nearbyOffers = actions.payload;
+    })
+    .addCase(loadComment, (state, actions) => {
+      state.offerComments = actions.payload;
     });
 });
