@@ -1,15 +1,17 @@
 import ReviewCard from '../review-card/review-card';
-import { reviews } from '../../mock/reviews';
-import CommentForm from '../comment-form/comment-form';
+import { Comment } from '../../types/comment';
 
-export default function ReviewList() {
+type Props = {
+  reviews: Comment[];
+}
+
+export default function ReviewList({ reviews }: Props) {
   return (
     <>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
-        {reviews.map((item) => <ReviewCard key={item.id} review={item}/>)}
+        {reviews.map((review, index) => <ReviewCard key={`${index + 1}-${review.user.avatarUrl}`} review={review}/>)}
       </ul>
-      <CommentForm />
     </>
   );
 }

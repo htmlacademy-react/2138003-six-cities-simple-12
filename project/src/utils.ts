@@ -1,4 +1,4 @@
-export default function passValidate(pas:string){
+export default function isPassValid(pas:string){
   if(pas.search(/[A-Za-z]/) === -1){
     return false;
   }

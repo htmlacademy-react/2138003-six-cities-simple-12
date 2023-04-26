@@ -9,21 +9,28 @@ import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
 import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { fetchOfferAction } from '../../store/api-actions';
+import { fetchOfferAction, fetchOffersNearbyAction, fetchCommentsAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks';
 import Spinner from '../../components/spinner/spinner';
+import { AuthorizationStatus } from '../../const';
+import CommentForm from '../../components/comment-form/comment-form';
 
-function Property () {
+export default function Property () {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
   const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
+  const comments = useAppSelector((state) => state.offerComments);
+  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
 
   const { id } = useParams();
   const currentOffer = offers.find((offerId) => offerId.id === Number(id));
 
   useEffect(() => {
     dispatch(fetchOfferAction());
-  }, [dispatch]);
+    dispatch(fetchCommentsAction(Number(id)));
+    dispatch(fetchOffersNearbyAction(Number(id)));
+  }, [dispatch, id]);
 
   if (isOffersLoaded && !currentOffer) {
     return <Spinner/>;
@@ -44,7 +51,7 @@ function Property () {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image) => (
+              {images.slice(0, 6).map((image) => (
                 <div key={`${image}`} className="property__image-wrapper">
                   <img className="property__image" src={image} alt="studio"/>
                 </div>
@@ -112,25 +119,23 @@ function Property () {
                   <p className="property__text">
                     {description}
                   </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                  </p>
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewList />
+                <ReviewList reviews={comments}/>
+                {(authorizationStatus === AuthorizationStatus.Auth) ? <CommentForm offerId={Number(id)}/> : ''}
               </section>
             </div>
           </div>
           <section className="property__map map">
-            <Map location={city.location} offers={offers} selectedOffer={currentOffer}/>
+            <Map location={city.location} offers={nearbyOffers} selectedOffer={currentOffer}/>
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offersList={offers.slice(0, 3)}/>
+              <OffersList offersList={nearbyOffers}/>
             </div>
           </section>
         </div>
@@ -138,5 +143,3 @@ function Property () {
     </div>
   );
 }
-
-export default Property;

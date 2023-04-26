@@ -1,20 +1,20 @@
-import { Review } from '../../types/review';
 import { ratingScale } from '../const';
 import formatDate from '../date/date';
+import { Comment } from '../../types/comment';
 
 type Props = {
-  review: Review;
+  review: Comment;
 }
 
 export default function ReviewCard({review}: Props) {
-  const { avatar, name, rating, date, comment } = review;
+  const { user: {avatarUrl, name}, rating, date, comment } = review;
   const dateTime = formatDate(date);
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={avatar} width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
           {name}

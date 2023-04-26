@@ -11,12 +11,20 @@ export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  NearbyOffers = '/hotels/id/nearby',
+  OfferComments = '/comments',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum CommentFormValue {
+  Default = 0,
+  MinLength = 50,
+  MaxLength = 300,
 }
 
 export const cities: City[] = [
