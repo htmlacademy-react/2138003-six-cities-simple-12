@@ -23,7 +23,7 @@ export default function OffersList({ offersList, onOfferHover }: Props) {
     <div className="cities__places-list places__list tabs__content">
       {isOffersLoaded ?
         <Spinner /> :
-        offersList.map((item) => <OfferCard key={item.id} offer={item} mouseEnter={mouseEnter} mouseLeave={mouseLeave} />)}
+        offersList.map((item) => <OfferCard key={item.id} offer={item} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} />)}
     </div>
   );
 }
