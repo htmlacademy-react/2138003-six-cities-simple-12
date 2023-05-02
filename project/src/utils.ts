@@ -1,11 +1,12 @@
 import { Offer } from './types/offer';
 import { sorting } from './const';
+import { Comment } from './types/comment';
 
-export function isPassValid(pas:string){
-  if(pas.search(/[A-Za-z]/) === -1){
+export function isPassValid(password:string){
+  if(password.search(/[A-Za-z]/) === -1){
     return false;
   }
-  if(pas.search(/[0-9]/) === -1){
+  if(password.search(/[0-9]/) === -1){
     return false;
   }
   return true;
@@ -41,4 +42,20 @@ export function sortOffers(offers:Offer[], sortType:string){
       break;
   }
   return sortedOffers;
+}
+
+export function pro(host:boolean) {
+  if (host){
+    return '--pro';
+  }
+  return '';
+}
+
+export function sortComment(comment:Comment[]){
+  return [...comment].sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    }
+    return -1;
+  }).slice(0, 10);
 }

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { checkAuthAction, logoutAction } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../const';
 import { AppRoute } from '../../const';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -30,14 +31,14 @@ export default function Header() {
                 </div>
               </li>
               <li className="header__nav-item">
-                <a className="header__nav-link"
+                <Link className="header__nav-link"
                   onClick={() => {
                     dispatch(logoutAction());
                   }}
-                  href={AppRoute.Login}
+                  to={AppRoute.Login}
                 >
                   <span className="header__signout">{(authorizationStatus === AuthorizationStatus.Auth) ? 'Sign out' : 'Sign in'}</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

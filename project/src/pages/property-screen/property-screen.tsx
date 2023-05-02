@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ratingScale } from '../../components/const';
 import { useParams } from 'react-router-dom';
 import ErrorPage from '../error-screen/error-screen';
-import pro from '../../components/host-pro/host-pro';
+import { pro } from '../../utils';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
@@ -14,6 +14,7 @@ import { useAppDispatch } from '../../hooks';
 import Spinner from '../../components/spinner/spinner';
 import { AuthorizationStatus } from '../../const';
 import CommentForm from '../../components/comment-form/comment-form';
+import { sortComment } from '../../utils';
 
 export default function Property () {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -122,7 +123,7 @@ export default function Property () {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewList reviews={comments}/>
+                <ReviewList reviews={sortComment(comments)}/>
                 {(authorizationStatus === AuthorizationStatus.Auth) ? <CommentForm offerId={Number(id)}/> : ''}
               </section>
             </div>

@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cities } from '../const';
-import { setActiveCity, setListOffers, setSortOffers, loadOffers, setAuthorizationStatus, setError, setEmail, loadComment, loadNearbyOffers, setIsOffersLoaded } from './action';
+import { setActiveCity, setListOffers, setSortOffers, setCommentDataLoadingStatus, loadOffers, setAuthorizationStatus, setError, setEmail, loadComments, loadNearbyOffers, setIsOffersLoaded } from './action';
 import { Offer } from '../types/offer';
 import { City } from '../types/city';
 import { sorting, AuthorizationStatus } from '../const';
@@ -16,6 +16,7 @@ type typeState = {
   email: string | null;
   nearbyOffers: Offer[];
   offerComments: Comment[];
+  isCommentDataLoading: boolean;
 }
 
 const initialState: typeState = {
@@ -28,6 +29,7 @@ const initialState: typeState = {
   email: null,
   nearbyOffers: [],
   offerComments: [],
+  isCommentDataLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -59,7 +61,10 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadNearbyOffers, (state, actions) => {
       state.nearbyOffers = actions.payload;
     })
-    .addCase(loadComment, (state, actions) => {
+    .addCase(setCommentDataLoadingStatus, (state, actions) => {
+      state.isCommentDataLoading = actions.payload;
+    })
+    .addCase(loadComments, (state, actions) => {
       state.offerComments = actions.payload;
     });
 });

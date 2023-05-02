@@ -6,22 +6,22 @@ import { Link } from 'react-router-dom';
 
 type OfferPageProps = {
   offer: Offer;
-  mouseEnter?: (id: number) => void;
-  mouseLeave?: () => void;
+  onMouseEnter?: (id: number) => void;
+  onMouseLeave?: () => void;
 }
 
-function OfferCard ({offer, mouseEnter, mouseLeave}: OfferPageProps) {
+function OfferCard ({offer, onMouseEnter, onMouseLeave}: OfferPageProps) {
   const { id, title, isPremium, price, rating, type, previewImage } = offer;
 
   return (
     <article className="cities__card place-card"
-      onMouseEnter={() => mouseEnter?.(id)}
-      onMouseLeave={mouseLeave}
+      onMouseEnter={() => onMouseEnter?.(id)}
+      onMouseLeave={onMouseLeave}
     >
       {Premium(isPremium)}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room.replace(/:id/, `${id}`)}`} key={id}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place interior" />
         </Link>
       </div>
       <div className="place-card__info">

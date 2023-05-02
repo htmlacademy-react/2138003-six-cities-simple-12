@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { loadOffers, setIsOffersLoaded, setAuthorizationStatus, setError, setEmail, loadComment, loadNearbyOffers, addComments } from './action';
+import { loadOffers, setIsOffersLoaded, setCommentDataLoadingStatus, setAuthorizationStatus, setError, setEmail, loadNearbyOffers, loadComments } from './action';
 import { APIRoute } from '../const';
 import { AppDispatch, State, } from '../types/state';
 import { Offer } from '../types/offer';
@@ -10,6 +10,7 @@ import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
 import { Comment } from '../types/comment';
 import { NewComment } from '../types/new-comment';
+import { toast } from 'react-toastify';
 
 export const clearErrorAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -59,7 +60,7 @@ export const fetchCommentsAction = createAsyncThunk<void, number, {
   'data/fetchComments',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Comment[]>(APIRoute.OfferComments.concat(`/${id}`));
-    dispatch(loadComment(data));
+    dispatch(loadComments(data));
   },
 );
 
@@ -70,8 +71,16 @@ export const sendReviewAction = createAsyncThunk<void, NewComment, {
 }>(
   'data/newComment',
   async ({comment, id, rating}, {dispatch, extra: api}) => {
-    const {data} = await api.post<Comment[]>(`${APIRoute.OfferComments}/${id}`, {comment, rating,});
-    dispatch(addComments(data));
+    try {
+      dispatch(setCommentDataLoadingStatus(true));
+      const {data} = await api.post<Comment[]>(`${APIRoute.OfferComments}/${id}`, {comment, rating,});
+      dispatch(setCommentDataLoadingStatus(false));
+      dispatch(loadComments(data));
+    }
+    catch {
+      dispatch(setCommentDataLoadingStatus(false));
+      toast.error('Сервер временно недоступен');
+    }
   },
 );
 

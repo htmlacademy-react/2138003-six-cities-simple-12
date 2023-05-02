@@ -1,5 +1,6 @@
 import { City } from './types/city';
 import { Sorting } from './types/sort';
+import { ReviewStar } from './types/reviews-star';
 
 export enum AppRoute {
   Main = '/',
@@ -86,3 +87,26 @@ export const sorting: Sorting = {
 };
 
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const starsRating: ReviewStar[] = [
+  {
+    star:'perfect',
+    id: 5
+  },
+  {
+    star:'good',
+    id: 4
+  },
+  {
+    star:'not bad',
+    id: 3
+  },
+  {
+    star:'badly',
+    id: 2
+  },
+  {
+    star:'terribly',
+    id: 1
+  }
+];
